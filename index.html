@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>xsignal.co — Premium Domain Brokerage</title>
+  <meta name="description" content="xsignal.co — We acquire and broker premium domain names for businesses and investors." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0c0b;
+      --surface: #141412;
+      --border: #232320;
+      --text: #e8e6df;
+      --muted: #6b6960;
+      --accent: #c8b87a;
+      --accent-dim: #8a7d52;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NOISE TEXTURE */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAV */
+    nav {
+      padding: 2.2rem 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-email {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-email:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      padding: 7rem 0 5rem;
+    }
+
+    .eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--accent-dim);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s ease forwards;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent-dim);
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.6rem, 6vw, 3.8rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s ease forwards;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 480px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s ease forwards;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4rem 0;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.5s ease forwards;
+    }
+
+    /* SERVICES */
+    .services {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.7s 0.55s ease forwards;
+    }
+
+    .service-item {
+      background: var(--surface);
+      padding: 2rem 1.8rem;
+      transition: background 0.2s;
+    }
+
+    .service-item:hover { background: #18180f; }
+
+    .service-num {
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      color: var(--accent-dim);
+      margin-bottom: 1rem;
+    }
+
+    .service-title {
+      font-size: 0.85rem;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .service-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin: 4rem 0;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.65s ease forwards;
+    }
+
+    .stat-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* CTA */
+    .cta-block {
+      border: 1px solid var(--border);
+      padding: 3rem 2.5rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.75s ease forwards;
+    }
+
+    .cta-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .cta-text p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--accent);
+      color: #0c0c0b;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.6rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+      flex-shrink: 0;
+      align-self: center;
+    }
+
+    .cta-btn:hover {
+      background: #d9cc96;
+      transform: translateY(-1px);
+    }
+
+    .cta-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      margin-top: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.9s ease forwards;
+    }
+
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .footer-right {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* GLOW */
+    .glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200, 184, 122, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+      top: -200px;
+      left: -200px;
+      z-index: 0;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 560px) {
+      .services { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 4.5rem 0 3.5rem; }
+      .cta-block { flex-direction: column; }
+      .cta-btn { align-self: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<div class="container">
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="logo">x<span>signal</span>.co</a>
+    <a href="mailto:hello@xsignal.co" class="nav-email">hello@xsignal.co</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">Domain Brokerage</div>
+    <h1>We deal in <em>names</em><br>that mean business.</h1>
+    <p>xsignal.co acquires, holds, and brokers premium domain names — connecting the right name with the right buyer. Whether you're building a brand or expanding your portfolio, we make the process clean and direct.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <div class="services">
+    <div class="service-item">
+      <div class="service-num">01</div>
+      <div class="service-title">Domain Acquisition</div>
+      <div class="service-desc">We source and secure strong, market-ready domains — short, brandable, and category-relevant names with lasting value.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">02</div>
+      <div class="service-title">End-User Sales</div>
+      <div class="service-desc">We match premium domains directly with businesses and startups who need the ideal name to anchor their brand.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">03</div>
+      <div class="service-title">Investor Brokerage</div>
+      <div class="service-desc">We work with domain investors and portfolio holders to facilitate clean, efficient transfers and negotiations.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">04</div>
+      <div class="service-title">Portfolio Consulting</div>
+      <div class="service-desc">Thinking of building or liquidating a domain portfolio? We advise on valuation, timing, and strategy.</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div>
+      <div class="stat-val">100+</div>
+      <div class="stat-label">Domains Held</div>
+    </div>
+    <div>
+      <div class="stat-val">Fast</div>
+      <div class="stat-label">Response Time</div>
+    </div>
+    <div>
+      <div class="stat-val">Direct</div>
+      <div class="stat-label">No Middlemen</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div class="cta-text">
+      <h2>Let's talk domains.</h2>
+      <p>Have a name in mind? Looking to sell? Or just want to explore what's available? Drop us a line — we respond to every serious inquiry.</p>
+    </div>
+    <a href="mailto:hello@xsignal.co" class="cta-btn">
+      Get in touch
+      <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">xsignal.co</div>
+    <div class="footer-right">© 2025 xsignal.co &nbsp;·&nbsp; hello@xsignal.co</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
