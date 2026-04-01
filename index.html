@@ -325,7 +325,7 @@
   <!-- NAV -->
   <nav>
     <a href="/" class="logo">x<span>signal</span>.co</a>
-    <a href="/cdn-cgi/l/email-protection#8ee6ebe2e2e1cef6fde7e9e0efe2a0ede1" class="nav-email"><span class="__cf_email__" data-cfemail="d9b1bcb5b5b699a1aab0beb7b8b5f7bab6">[email&#160;protected]</span></a>
+    <a href="#" class="nav-email" id="nav-mail"></a>
   </nav>
 
   <!-- HERO -->
@@ -364,7 +364,7 @@
   <!-- STATS -->
   <div class="stats">
     <div>
-      <div class="stat-val">100+</div>
+      <div class="stat-val">125+</div>
       <div class="stat-label">Domains Held</div>
     </div>
     <div>
@@ -383,7 +383,7 @@
       <h2>Let's talk domains.</h2>
       <p>Have a name in mind? Looking to sell? Or just want to explore what's available? Drop us a line — we respond to every serious inquiry.</p>
     </div>
-    <a href="/cdn-cgi/l/email-protection#7e161b1212113e060d1719101f12501d11" class="cta-btn">
+    <a href="#" class="cta-btn" id="cta-mail">
       Get in touch
       <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -393,4 +393,29 @@
 
   <!-- FOOTER -->
   <footer>
-   
+       <div class="footer-brand">xsignal.co</div>
+    <div class="footer-right" id="footer-mail">© 2025 xsignal.co</div>
+  </footer>
+
+</div>
+
+<script>
+  (function() {
+    var u = 'hello';
+    var d = 'xsignal.co';
+    var email = u + '@' + d;
+    var mailto = 'mailto:' + email;
+
+    var nav = document.getElementById('nav-mail');
+    if (nav) { nav.href = mailto; nav.textContent = email; }
+
+    var cta = document.getElementById('cta-mail');
+    if (cta) { cta.href = mailto; }
+
+    var footer = document.getElementById('footer-mail');
+    if (footer) { footer.textContent = '© 2025 xsignal.co · ' + email; }
+  })();
+</script>
+
+</body>
+</html>
